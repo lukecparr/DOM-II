@@ -78,3 +78,45 @@ const pTags = document.querySelectorAll('p')
 pTags.forEach(e => e.addEventListener('copy', () => alert("You copied some text!")));
 
 
+//Nested listeners
+
+//Turns 'Let's Go!' section's background color blue when clicked
+const section = document.querySelector('div.home>section.content-section>div.text-content');
+section.addEventListener('click', (event) => {
+	section.style.backgroundColor = 'blue'
+	console.log(event);
+});
+
+//Turns paragraph text in first section red when clicked; does not propegate to the above listener.
+const secP = document.querySelectorAll('div.home>section:nth-of-type(1)>div:nth-of-type(1)>p');
+secP.forEach(e => {
+	e.addEventListener('click', (event) => {
+		event.target.style.color = 'red';
+		event.stopPropagation();
+	});
+});
+
+//Turns 'Sign Me Up!' into buttons and adds confirmation on click
+const buttons = document.querySelectorAll('div.btn');
+
+buttons.forEach(e => {e.remove()})
+const dest = document.querySelectorAll('div.destination');
+dest.forEach(e => {
+	const newButton = document.createElement('button');
+	newButton.textContent = 'Sign Me Up!';
+	newButton.addEventListener('click', () => {
+		const confirm = document.createElement('p');
+		confirm.textContent = 'You\'re Signed Up!';
+		e.appendChild(confirm);
+	}, {once: true})
+	e.appendChild(newButton);
+	
+});
+
+//trigger event on load
+
+
+
+
+
+
