@@ -109,14 +109,27 @@ dest.forEach(e => {
 		confirm.textContent = 'You\'re Signed Up!';
 		e.appendChild(confirm);
 	}, {once: true})
+	newButton.addEventListener('mouseover', e => newButton.style.backgroundColor = "goldenrod");
+	newButton.addEventListener('mouseout', e => newButton.style.backgroundColor = "#EFEFEF");
 	e.appendChild(newButton);
 	
 });
 
-//trigger event on load
+//Welcome popup on page load
+window.addEventListener('load', () => window.confirm("Welcome to his page! Click ok to continue."));
 
 
+//Large links when recieved focus
+document.querySelectorAll('a').forEach(e => {	
+	e.addEventListener('focus', e => {
+		e.target.style.fontSize = "2rem";
+	})
+});
 
-
-
+//Back to normal when losing focus
+document.querySelectorAll('a').forEach(e => {	
+	e.addEventListener('blur', e => {
+		e.target.style.fontSize = "1rem";
+	})
+});
 
